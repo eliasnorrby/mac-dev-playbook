@@ -1,0 +1,4 @@
+---
+# - name: eliasnorrby.dotfiles
+- name: geerlingguy.homebrew
+- name: geerlingguy.mas
