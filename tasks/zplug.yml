@@ -1,0 +1,9 @@
+---
+- name: install zplug
+  block:
+    - name: clone zplug repo
+      git:
+        repo: https://github.com/zplug/zplug
+        dest: "{{ zplug_home }}"
+        version: master
+  tags: install

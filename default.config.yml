@@ -1,4 +1,5 @@
 ---
+# geerlingguy stuff
 downloads: ~/.ansible-downloads/
 
 homebrew_installed_packages:
@@ -30,3 +31,78 @@ pip_packages: []
 
 # Glob pattern to ansible task files to run after all other tasks are finished.
 post_provision_tasks: []
+
+# my stuff
+xdg_config_home: "~/.config"
+xdg_cache_home: "~/.cache"
+xdg_data_home: "~/.local/share"
+xdg_bin_home: "~/.local/bin"
+
+dotfiles: "~/.dotfiles"
+dotfiles_data: "{{ xdg_data_home }}/dotfiles"
+
+zdotdir: "{{ xdg_config_home }}/zsh"
+zplug_home: "{{ xdg_cache_home }}/zplug"
+# enabled_topics: all
+
+# enabled_topics:
+#   - shell/zsh
+#   - shell/tmux
+
+topics:
+  editor:
+    - name: vim
+      path: editor/vim
+      state: present
+      brew_formulas:
+        - vim
+    - name: emacs
+      path: editor/emacs
+      state: present
+      brew_taps:
+        - d12frosted/emacs-plus
+      brew_formulas:
+        - name: emacs_plus
+          install_options: without-spacemacs-icon
+  shell:
+    - name: zsh
+      path: shell/zsh
+      state: present
+      brew_formulas:
+        - zsh
+        - fzf
+        - ripgrep
+      links:
+        - src: .zshrc
+          dest: "{{ zdotdir }}"
+        - src: .zshenv
+          dest: "{{ zdotdir }}"
+    - name: tmux
+      path: shell/tmux
+      state: present
+      brew_formulas:
+        - tmux
+# topics:
+#   editor:
+#     - name: vim
+#       enabled: yes
+#       brew_formulas:
+#         - vim
+#     - name: emacs
+#       enabled: yes
+#       brew_taps:
+#         - d12frosted/emacs-plus
+#       brew_formulas:
+#         - name: emacs_plus
+#           install_options: without-spacemacs-icon
+#   shell:
+#     - name: zsh
+#       enabled: no
+#       brew_formulas:
+#         - zsh
+#         - fzf
+#         - ripgrep
+#     - name: tmux
+#       enabled: yes
+#       brew_formulas:
+#         - tmux

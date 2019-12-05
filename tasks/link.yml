@@ -1,0 +1,29 @@
+---
+# - name: deploy enabled topics
+#   file:
+#     state: link
+#     path: "{{ $DOTFILES + item }}"
+- debug:
+    var: topics
+    verbosity: 1
+
+- set_fact:
+    enabled_topics: "{{ q('dict', topics) | map(attribute='value') | list | flatten | selectattr('state', 'equalto', 'present') | list }}"
+
+- debug:
+    var: enabled_topics
+    verbosity: 1
+
+- set_fact:
+    brew_formulas: "{{ enabled_topics | map(attribute='brew_formulas') | list | flatten | unique }}"
+
+- debug:
+    var: brew_formulas
+    verbosity: 1
+
+- set_fact:
+    topic_links: "{{ enabled_topics | selectattr('links', 'defined') | map(attribute='links') | list | flatten | unique }}"
+
+- debug:
+    var: topic_links
+    verbosity: 1
