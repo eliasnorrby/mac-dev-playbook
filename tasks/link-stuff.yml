@@ -1,0 +1,9 @@
+---
+- name: link stuff
+  debug:
+    msg: "linking {{ dotfiles_data + '/' + (topic.path | replace('/', '.')) + '.topic' + '/' + item.src }} to {{ item.dest | regex_replace('/$', '/' + item.src) }}"
+  # file:
+  #   path: "{{ item.src }}"
+  #   dest: "{{ item.dest | regex_replace('/$', '/' + item.src) }}"
+  #   state: link
+  loop: "{{ topic.links }}"

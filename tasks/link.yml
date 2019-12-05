@@ -24,6 +24,29 @@
 - set_fact:
     topic_links: "{{ enabled_topics | selectattr('links', 'defined') | map(attribute='links') | list | flatten | unique }}"
 
+- set_fact:
+    topics_with_links: "{{ enabled_topics | selectattr('links', 'defined') | list }}"
+- debug:
+    var: topics_with_links
+
+# - debug:
+#     msg: "{{ enabled_topics | selectattr('links', 'defined') | map('combine', {'baz':3}) | list }}"
+# - set_fact:
+#     detailed_links: " {{ (detailed_links|default({})) | combine(item.) }}"
+#   loop: "{{ enabled_topics | dict2items }}"
+
+- include_tasks: link-stuff.yml
+  loop: "{{ enabled_topics | selectattr('links', 'defined') | list }}"
+  loop_control:
+    loop_var: topic
+
+# - name: link stuff
+#   file:
+#     path: "{{ item.src }}"
+#     dest: "{{ item.dest | regex_replace('/$', '/' + item.src) }}"
+#     state: link
+#   loop: "{{ all_links }}"
+
 - debug:
     var: topic_links
     verbosity: 1

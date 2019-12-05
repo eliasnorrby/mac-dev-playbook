@@ -74,9 +74,9 @@ topics:
         - ripgrep
       links:
         - src: .zshrc
-          dest: "{{ zdotdir }}"
+          dest: "{{ zdotdir }}/"
         - src: .zshenv
-          dest: "{{ zdotdir }}"
+          dest: "{{ zdotdir }}/"
     - name: tmux
       path: shell/tmux
       state: present
