@@ -11,7 +11,7 @@
     verbosity: 1
 
 - set_fact:
-    brew_formulas: "{{ present_topics | selectattr('brew_formulas', 'defined') | map(attribute='brew_formulas') | list | flatten | unique }}"
+    brew_formulas: "{{ present_topics | selectattr('config.brew_formulas', 'defined') | map(attribute='config.brew_formulas') | list | flatten | unique }}"
 
 - debug:
     var: brew_formulas

@@ -23,9 +23,11 @@
   #   tags: ['mas']
 
   tasks:
+    # TODO: Scope this properly. Now, it's possible to disable zsh in
+    # dotfiles/config.yml and still have the zplug tasks trigger.
     - import_tasks: tasks/zplug.yml
       tags: zplug
-    - import_tasks: tasks/set-variables.yml
-      tags: link
+    # - import_tasks: tasks/set-variables.yml
+    #   tags: link
     # - import_tasks: tasks/homebrew-test.yml
     #   tags: link

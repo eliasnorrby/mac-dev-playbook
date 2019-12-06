@@ -49,45 +49,50 @@ zplug_home: "{{ xdg_cache_home }}/zplug"
 #   - shell/zsh
 #   - shell/tmux
 
-topics:
-  editor:
-    - name: vim
-      path: editor/vim
-      state: present
-      brew_formulas:
-        - vim
-    - name: emacs
-      path: editor/emacs
-      state: present
-      brew_taps:
-        - d12frosted/emacs-plus
-      brew_formulas:
-        - name: emacs-plus
-          # install_options: without-spacemacs-icon
-  shell:
-    - name: zsh
-      path: shell/zsh
-      state: present
-      brew_formulas:
-        - zsh
-        - fzf
-        - ripgrep
-      links:
-        - src: .zshrc
-          dest: "{{ zdotdir }}/"
-        - src: .zshenv
-          dest: "{{ zdotdir }}/"
-    - name: tmux
-      path: shell/tmux
-      state: present
-      brew_formulas:
-        - tmux
-    - name: git
-      path: shell/git
-      state: present
-      links:
-        - src: something
-          dest: somewhere
+# topics:
+#   editor:
+#     - name: vim
+#       state: present
+#       config:
+#         path: editor/vim
+#         brew_formulas:
+#           - vim
+#     - name: emacs
+#       state: present
+#       config:
+#         path: editor/emacs
+#         brew_taps:
+#           - d12frosted/emacs-plus
+#         brew_formulas:
+#           - name: emacs-plus
+#             # install_options: without-spacemacs-icon
+#   shell:
+#     - name: zsh
+#       state: present
+#       config:
+#         path: shell/zsh
+#         brew_formulas:
+#           - zsh
+#           - fzf
+#           - ripgrep
+#         links:
+#           - src: .zshrc
+#             dest: "{{ zdotdir }}/"
+#           - src: .zshenv
+#             dest: "{{ zdotdir }}/"
+#     - name: tmux
+#       state: present
+#       config:
+#         path: shell/tmux
+#         brew_formulas:
+#           - tmux
+#     - name: git
+#       state: present
+#       config:
+#         path: shell/git
+#         links:
+#           - src: something
+#             dest: somewhere
 # topics:
 #   editor:
 #     - name: vim
