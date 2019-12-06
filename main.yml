@@ -12,11 +12,10 @@
       tags: ["always"]
 
   roles:
-    # - role: geerlingguy.homebrew
-    #   tags: ['homebrew']
-
     - role: eliasnorrby.dotfiles
       tags: ["dotfiles"]
+  # - role: geerlingguy.homebrew
+  #   tags: ['homebrew']
 
   # - role: geerlingguy.mas
   #   when: mas_installed_apps
@@ -27,7 +26,10 @@
     # dotfiles/config.yml and still have the zplug tasks trigger.
     - import_tasks: tasks/zplug.yml
       tags: zplug
-    # - import_tasks: tasks/set-variables.yml
-    #   tags: link
+    - import_tasks: tasks/set-variables.yml
+    - import_role:
+        role: geerlingguy.homebrew
+      tags: do_homebrew
+      when: ansible_connection != 'local'
     # - import_tasks: tasks/homebrew-test.yml
     #   tags: link

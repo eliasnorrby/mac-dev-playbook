@@ -1,20 +1,38 @@
 ---
+# Prepare vaiables for geerlingguy.homebrew
 - debug:
     var: topics
     verbosity: 1
-
-# - set_fact:
-#     enabled_topics: "{{ q('dict', topics) | map(attribute='value') | list | flatten | selectattr('state', 'equalto', 'present') | list }}"
 
 - debug:
     var: present_topics
     verbosity: 1
 
 - set_fact:
-    brew_formulas: "{{ present_topics | selectattr('config.brew_formulas', 'defined') | map(attribute='config.brew_formulas') | list | flatten | unique }}"
+    homebrew_installed_packages: "{{ present_topics | selectattr('config.brew_formulas', 'defined') | map(attribute='config.brew_formulas') | list | flatten | unique }}"
+    homebrew_uninstalled_packages: "{{ absent_topics | selectattr('config.brew_formulas', 'defined') | map(attribute='config.brew_formulas') | list | flatten | unique }}"
+    homebrew_taps: "{{ present_topics | selectattr('config.brew_taps', 'defined') | map(attribute='config.brew_taps') | list | flatten | unique }}"
+    homebrew_cask_apps: "{{ present_topics | selectattr('config.brew_casks', 'defined') | map(attribute='config.brew_casks') | list | flatten | unique }}"
+    homebrew_cask_uninstalled_apps: "{{ absent_topics | selectattr('config.brew_casks', 'defined') | map(attribute='config.brew_casks') | list | flatten | unique }}"
 
 - debug:
-    var: brew_formulas
+    var: homebrew_installed_packages
+    verbosity: 1
+
+- debug:
+    var: homebrew_uninstalled_packages
+    verbosity: 1
+
+- debug:
+    var: homebrew_taps
+    verbosity: 1
+
+- debug:
+    var: homebrew_cask_apps
+    verbosity: 1
+
+- debug:
+    var: homebrew_cask_uninstalled_apps
     verbosity: 1
 # - set_fact:
 #     topic_links: "{{ enabled_topics | selectattr('links', 'defined') | map(attribute='links') | list | flatten | unique }}"

@@ -1,4 +1,7 @@
 ---
-# - name: eliasnorrby.dotfiles
-- name: geerlingguy.homebrew
-- name: geerlingguy.mas
+# - src: eliasnorrby.dotfiles
+- src: https://github.com/eliasnorrby/ansible-role-dotfiles
+  name: eliasnorrby.dotfiles
+  version: master
+- src: geerlingguy.homebrew
+- src: geerlingguy.mas
