@@ -40,7 +40,7 @@ script:
   - "cp tests/config.yml config.yml"
 
   # Test the playbook.
-  - "travis_wait 30 ansible-playbook main.yml --tags 'all,do_homebrew'"
+  - "travis_wait 30 ansible-playbook main.yml --tags 'all,do_homebrew' -v"
 
   # Test the playbook's idempotence.
   - idempotence=$(mktemp)

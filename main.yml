@@ -27,9 +27,11 @@
     - import_tasks: tasks/zplug.yml
       tags: zplug
     - import_tasks: tasks/set-variables.yml
+    - debug:
+        var: ansible_connection
     - import_role:
         role: geerlingguy.homebrew
-      tags: do_homebrew
-      when: ansible_connection != 'local'
+      tags: never,do_homebrew
+      # when: ansible_connection != 'local'
     # - import_tasks: tasks/homebrew-test.yml
     #   tags: link
