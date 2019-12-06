@@ -62,8 +62,8 @@ topics:
       brew_taps:
         - d12frosted/emacs-plus
       brew_formulas:
-        - name: emacs_plus
-          install_options: without-spacemacs-icon
+        - name: emacs-plus
+          # install_options: without-spacemacs-icon
   shell:
     - name: zsh
       path: shell/zsh
@@ -82,6 +82,12 @@ topics:
       state: present
       brew_formulas:
         - tmux
+    - name: git
+      path: shell/git
+      state: present
+      links:
+        - src: something
+          dest: somewhere
 # topics:
 #   editor:
 #     - name: vim

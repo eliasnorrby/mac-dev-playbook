@@ -10,31 +10,13 @@
       with_fileglob:
         - "{{ playbook_dir }}/config.yml"
       tags: ["always"]
-    - name: find topic configs
-      find:
-        path: "{{ dotfiles }}"
-        patterns: "config.yml"
-        file_type: file
-        recurse: yes
-      register: find_results
-      tags: ["never"]
-    - set_fact:
-        configs: "{{ find_results.files | map(attribute='path') | list }}"
-      tags: ["never"]
-    - include_vars: "{{ item }}"
-      loop: "{{ configs }}"
-      tags: ["never"]
-    - include_vars: "{{ item }}"
-      with_fileglob:
-        - "{{ dotfiles }}/config.yml"
-      tags: ["never"]
 
-  # roles:
-  # - role: geerlingguy.homebrew
-  #   tags: ['homebrew']
+  roles:
+    # - role: geerlingguy.homebrew
+    #   tags: ['homebrew']
 
-  # - role: eliasnorrby.dotfiles
-  #   tags: ["dotfiles"]
+    - role: eliasnorrby.dotfiles
+      tags: ["dotfiles"]
 
   # - role: geerlingguy.mas
   #   when: mas_installed_apps
@@ -43,5 +25,7 @@
   tasks:
     - import_tasks: tasks/zplug.yml
       tags: zplug
-    - import_tasks: tasks/link.yml
+    - import_tasks: tasks/set-variables.yml
       tags: link
+    # - import_tasks: tasks/homebrew-test.yml
+    #   tags: link

@@ -1,0 +1,35 @@
+---
+- debug:
+    var: topics
+    verbosity: 1
+
+# - set_fact:
+#     enabled_topics: "{{ q('dict', topics) | map(attribute='value') | list | flatten | selectattr('state', 'equalto', 'present') | list }}"
+
+- debug:
+    var: present_topics
+    verbosity: 1
+
+- set_fact:
+    brew_formulas: "{{ present_topics | selectattr('brew_formulas', 'defined') | map(attribute='brew_formulas') | list | flatten | unique }}"
+
+- debug:
+    var: brew_formulas
+    verbosity: 1
+# - set_fact:
+#     topic_links: "{{ enabled_topics | selectattr('links', 'defined') | map(attribute='links') | list | flatten | unique }}"
+
+# - debug:
+#     var: topic_links
+#     verbosity: 1
+
+# - set_fact:
+#     topics_with_links: "{{ enabled_topics | selectattr('links', 'defined') | list }}"
+
+# - debug:
+#     var: topics_with_links
+
+# - include_tasks: link-stuff.yml
+#   loop: "{{ enabled_topics | selectattr('links', 'defined') | list }}"
+#   loop_control:
+#     loop_var: topic
