@@ -41,8 +41,12 @@ xdg_bin_home: "~/.local/bin"
 dotfiles: "~/.dotfiles"
 dotfiles_data: "{{ xdg_data_home }}/dotfiles"
 
+# TODO: put these in a more sensible location
+# TODO: tie corresponding tasks to their respective topics somehow
 zdotdir: "{{ xdg_config_home }}/zsh"
 zplug_home: "{{ xdg_cache_home }}/zplug"
+
+doom_home: "~/.emacs.d"
 # enabled_topics: all
 
 # enabled_topics:
