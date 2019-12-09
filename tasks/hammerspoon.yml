@@ -1,6 +1,7 @@
 ---
 - name: check if hammerspoon_home is configured
   command: defaults read org.hammerspoon.Hammerspoon MJConfigFile
+  failed_when: false
   changed_when: false
   register: mjconfigfile
 - name: write hammerspoon_home with defaults
