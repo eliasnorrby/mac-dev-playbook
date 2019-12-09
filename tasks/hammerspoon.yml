@@ -4,6 +4,10 @@
   failed_when: false
   changed_when: false
   register: mjconfigfile
+- debug:
+    var: mjconfigfile.stdout
+- debug:
+    var: ansible_user_dir
 - name: write hammerspoon_home with defaults
   command: defaults write org.hammerspoon.Hammerspoon MJConfigFile "{{ hammerspoon_home }}/init.lua"
-  when: mjconfigfile.stdout != (hammerspoon_home + "/init.lua")
+  when: mjconfigfile.stdout != (hammerspoon_home | replace('~',ansible_user_dir) + "/init.lua")

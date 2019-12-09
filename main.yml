@@ -31,9 +31,7 @@
     - import_tasks: tasks/hammerspoon.yml
       tags: hammerspoon
     - import_tasks: tasks/set-variables.yml
-    - debug:
-        var: ansible_connection
-    - import_role:
+    - include_role:
         role: geerlingguy.homebrew
       tags: never,do_homebrew
       # when: ansible_connection != 'local'
