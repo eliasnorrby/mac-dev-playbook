@@ -21,8 +21,9 @@ install:
   # Install Ansible.
   - sudo pip install ansible
 
-  # Add ansible.cfg to pick up roles path.
-  - "echo 'callback_whitelist = profile_tasks' >> ansible.cfg"
+  # Profile tasks (but beware of 'tail' used in idempotence test)
+  # Profiling adds extra lines to the output, potentially failing the test
+  # - "echo 'callback_whitelist = profile_tasks' >> ansible.cfg"
 
 script:
   # Install dependencies.
