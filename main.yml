@@ -4,6 +4,8 @@
   vars_files:
     - default.config.yml
 
+  # This is always overwritten by the dotfile config.yml
+  # TODO: Find a way to make use of it to speed up CI
   pre_tasks:
     - name: allow local overrides
       include_vars: "{{ item }}"
@@ -14,9 +16,6 @@
   roles:
     - role: eliasnorrby.dotfiles
       tags: ["dotfiles"]
-  # - role: geerlingguy.homebrew
-  #   tags: ['homebrew']
-
   # - role: geerlingguy.mas
   #   when: mas_installed_apps
   #   tags: ['mas']
@@ -34,6 +33,6 @@
     - include_role:
         role: geerlingguy.homebrew
       tags: never,do_homebrew
-      # when: ansible_connection != 'local'
-    # - import_tasks: tasks/homebrew-test.yml
-    #   tags: link
+    - include_role:
+        role: geerlingguy.mas
+      tags: never,do_mas
