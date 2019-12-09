@@ -1,0 +1,8 @@
+---
+- name: check if hammerspoon_home is configured
+  command: defaults read org.hammerspoon.Hammerspoon MJConfigFile
+  changed_when: false
+  register: mjconfigfile
+- name: write hammerspoon_home with defaults
+  command: defaults write org.hammerspoon.Hammerspoon MJConfigFile "{{ hammerspoon_home }}/init.lua"
+  when: mjconfigfile.stdout != (hammerspoon_home + "/init.lua")

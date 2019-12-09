@@ -47,6 +47,8 @@ zdotdir: "{{ xdg_config_home }}/zsh"
 zplug_home: "{{ xdg_cache_home }}/zplug"
 
 doom_home: "~/.emacs.d"
+
+hammerspoon_home: "{{ xdg_config_home }}/hammerspoon"
 # enabled_topics: all
 
 # enabled_topics:
