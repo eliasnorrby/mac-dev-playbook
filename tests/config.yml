@@ -1,44 +1,12 @@
 ---
-topics:
-  editor:
-    - name: vim
-      state: present
-      config:
-        path: editor/vim
-        brew_formulas:
-          - vim
-    - name: emacs
-      state: present
-      config:
-        path: editor/emacs
-        brew_taps:
-          - d12frosted/emacs-plus
-        brew_formulas:
-          - name: emacs-plus
-            install_options: without-spacemacs-icon
-  shell:
-    - name: zsh
-      state: present
-      config:
-        path: shell/zsh
-        brew_formulas:
-          - zsh
-          - fzf
-          - ripgrep
-        links:
-          - src: .zshrc
-            dest: "{{ zdotdir }}/"
-          - src: .zshenv
-            dest: "{{ zdotdir }}/"
-    - name: tmux
-      state: present
-      config:
-        path: shell/tmux
-        brew_formulas:
-          - tmux
-    - name: alacritty
-      state: present
-      config:
-        path: shell/git
-        brew_casks:
-          - alacritty
+homebrew_installed_packages:
+  - vim
+  - fzf
+  - name: emacs-plus
+    install_options: without-spacemacs-icon
+
+homebrew_taps:
+  - d12frosted/emacs-plus
+
+homebrew_cask_apps:
+  - alacritty
