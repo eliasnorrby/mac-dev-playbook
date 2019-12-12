@@ -27,8 +27,6 @@
       tags: zplug
     - import_tasks: tasks/doom-emacs.yml
       tags: doom-emacs
-    - import_tasks: tasks/hammerspoon.yml
-      tags: hammerspoon
     - import_tasks: tasks/set-variables.yml
     - include_role:
         role: geerlingguy.homebrew
