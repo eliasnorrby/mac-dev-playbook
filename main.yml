@@ -34,3 +34,5 @@
     - include_role:
         role: geerlingguy.mas
       tags: never,do_mas
+    - import_tasks: tasks/extra-packages.yml
+      tags: never,do_packages,bootstrap
